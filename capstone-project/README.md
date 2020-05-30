@@ -105,4 +105,29 @@ The complete DDL statements for creating tables are in the file `create_ncaa_tab
  
  #### Sample Queries
  
- - 
+ - What is the maximum and minimum difference in shot percentages of the winning and losing teams?
+ - Does winning momentum in regular season carry on to Tournament?
+ - Which team performs better in overtime?
+ 
+ #### Frequency of data updates
+ 
+ Since each tournament data has few games or less each day, it is sufficient to update the data once per day.
+ 
+ #### If the data is increased by 100x?
+ 
+ We use S3 for data storage which can scale automatically.
+ We use two dc2large nodes for Redshift. If we need more processing power, we can scale out horizontally without downtime.
+ 
+ #### If the pipelines were run on a daily basis by 7am?
+ 
+ No impact in pipeline since we are already running it once per day.
+ 
+ #### If the database needed to be accessed by 100+ people?
+ 
+ Redshift is based on Postgres and it allows simultaneous connections by default.
+ 
+ #### Github Repo
+ 
+ [Capstone Project] [2]
+ 
+ [2]: <https://github.com/arulpugazh/udacity-data-engineering-nanodegree/tree/master/capstone-project> 
