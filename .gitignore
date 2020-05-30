@@ -4,3 +4,4 @@
 capstone-project/data
 capstone-project/archive
 *.cfg
+*.pyc

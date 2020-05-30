@@ -3,8 +3,8 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 
-class LoadDimensionOperator(BaseOperator):
-    ui_color = '#80BD9E'
+class LoadFactOperator(BaseOperator):
+    ui_color = '#F98866'
 
     @apply_defaults
     def __init__(self,
@@ -13,8 +13,7 @@ class LoadDimensionOperator(BaseOperator):
                  sql,
                  append_data,
                  *args, **kwargs):
-        super(LoadDimensionOperator, self).__init__(*args, **kwargs)
-
+        super(LoadFactOperator, self).__init__(*args, **kwargs)
         self.redshift_conn_id = redshift_conn_id
         self.table = table
         self.sql = sql
@@ -22,9 +21,7 @@ class LoadDimensionOperator(BaseOperator):
 
     def execute(self, context):
         redshift_hook = PostgresHook(self.redshift_conn_id)
-        if self.append_data:
-            redshift_hook.run(self.sql)
-        else:
+        if not self.append_data:
             redshift_hook.run('''DELETE FROM {}'''.format(self.table))
-            redshift_hook.run(self.sql)
+        redshift_hook.run(self.sql)
         self.log.info(f'Loading records into {self.table} completed')
