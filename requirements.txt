@@ -142,7 +142,7 @@ isodate==0.6.0
 itsdangerous==1.1.0
 JayDeBeApi==1.1.1
 jedi==0.17.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 jira==2.0.0
 jmespath==0.9.5
 JPype1==0.7.1
